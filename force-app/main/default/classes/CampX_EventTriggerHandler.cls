@@ -1,7 +1,7 @@
 public with sharing class CampX_EventTriggerHandler implements ITriggerHandler {
 
     public void beforeInsert(List<SObject> newList){
-
+        CampX_EventService.setStatus(newList);
     }
     public void beforeUpdate(List<SObject> oldList, Map<Id, SObject> oldMap, List<SObject> newList, Map<Id, SObject> newMap){
 
