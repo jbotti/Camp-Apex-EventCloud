@@ -7,6 +7,8 @@
         <members>CampX_EventServiceTest</members>
         <members>CampX_EventTriggerHandler</members>
         <members>CampX_EventTriggerHandlerTest</members>
+        <members>CampX_SponsorTriggerHandler</members>
+        <members>CampX_SponsorTriggerHandlerTest</members>
         <members>ITriggerHandler</members>
         <members>TriggerHandlerDispatcher</members>
         <members>TriggerHandlerDispatcherTest</members>
@@ -14,6 +16,7 @@
     </types>
     <types>
         <members>CampX_EventTrigger</members>
+        <members>CampX_SponsorTrigger</members>
         <name>ApexTrigger</name>
     </types>
 </Package>
