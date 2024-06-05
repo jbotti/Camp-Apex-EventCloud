@@ -91,7 +91,12 @@ public with sharing class CampX_SponsorService {
             }
             e.CAMPX__GrossRevenue__c = totalContribution;
         }
-        update eventsToUpdate;
+        try {
+            update eventsToUpdate;
+        }
+        catch(DmlException e){
+            System.debug('DML Error Message: ' + e.getMessage());
+        }
     }
 
     public static void validateEmail(Map<Id, CAMPX__Sponsor__c> newMap){
