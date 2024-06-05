@@ -1,7 +1,7 @@
 public with sharing class CampX_SponsorService {
 
-    public static void calculateTier(Boolean isInsert, Map<Id, CAMPX__Sponsor__c> oldMap, List<CAMPX__Sponsor__c> newList, Map<Id, CAMPX__Sponsor__c> newMap){
-        if(isInsert){
+    public static void calculateTier(Map<Id, CAMPX__Sponsor__c> oldMap, List<CAMPX__Sponsor__c> newList, Map<Id, CAMPX__Sponsor__c> newMap){
+        if(oldMap == null){
             setTier(newList);
         }
         else{
