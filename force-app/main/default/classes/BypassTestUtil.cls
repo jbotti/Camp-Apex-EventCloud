@@ -1,5 +1,5 @@
 @IsTest
-public class BypassUtil {
+public class BypassTestUtil {
     
     public static void createBypass(Boolean allP, Boolean eventP, Boolean sponsorP){
 

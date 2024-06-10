@@ -3,6 +3,7 @@
     <types>
         <members>Bypass</members>
         <members>BypassTest</members>
+        <members>BypassTestUtil</members>
         <members>CampX_EventService</members>
         <members>CampX_EventServiceTest</members>
         <members>CampX_EventTriggerHandler</members>
@@ -11,6 +12,8 @@
         <members>CampX_SponsorServiceTest</members>
         <members>CampX_SponsorTriggerHandler</members>
         <members>CampX_SponsorTriggerHandlerTest</members>
+        <members>EventContributorCalculator</members>
+        <members>EventContributorCalculatorTest</members>
         <members>ITriggerHandler</members>
         <members>TriggerHandlerDispatcher</members>
         <members>TriggerHandlerDispatcherTest</members>
