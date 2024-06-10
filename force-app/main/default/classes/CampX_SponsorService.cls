@@ -11,16 +11,20 @@ public with sharing class CampX_SponsorService {
         }
         else{
             for(CAMPX__Sponsor__c s : newMap.values()){
-                if(s.CAMPX__Status__c == 'Accepted' && s.CAMPX__Status__c != oldMap.get(s.Id).CAMPX__Status__c && s.CAMPX__ContributionAmount__c != null){
+                if(s.CAMPX__Status__c != oldMap.get(s.Id).CAMPX__Status__c){
                     events.add(s.CAMPX__Event__c);
                 }
-                else if(s.CAMPX__Status__c == 'Accepted' && s.CAMPX__ContributionAmount__c != oldMap.get(s.Id).CAMPX__ContributionAmount__c && s.CAMPX__ContributionAmount__c != null){
+                else if(s.CAMPX__ContributionAmount__c != oldMap.get(s.Id).CAMPX__ContributionAmount__c){
                     events.add(s.CAMPX__Event__c);
+                }
+                else if(s.CAMPX__Event__c != oldMap.get(s.Id).CAMPX__Event__c){
+                    events.add(s.CAMPX__Event__c);
+                    events.add(oldMap.get(s.Id).CAMPX__Event__c);
                 }
             }
         }
         if(events.size() > 0){
-            setTotalEventContribution(events);
+            EventContributionCalculator.buildEventContributionMap(events);
         }
     }
 
@@ -64,38 +68,6 @@ public with sharing class CampX_SponsorService {
             else{
                 sponsor.CAMPX__Tier__c = null;
             }
-        }
-    }
-
-    public static void setTotalEventContribution(Set<Id> eventSet){
-        Map<Id, List<CAMPX__Sponsor__c>> eventMap = new Map<Id, List<CAMPX__Sponsor__c>>();
-        List<CAMPX__Event__c> eventsToUpdate = new List<CAMPX__Event__c>();
-        List<CAMPX__Sponsor__c> sponsorList = [SELECT Id, CAMPX__ContributionAmount__c, CAMPX__Event__c
-                                               FROM CAMPX__Sponsor__c WHERE CAMPX__Status__c = 'Accepted' AND CAMPX__Event__c IN: eventSet];
-
-        for(CAMPX__Sponsor__c s : sponsorList){
-            if(eventMap.get(s.CAMPX__Event__c) != null){
-                eventMap.get(s.CAMPX__Event__c).add(s);
-            }
-            else {
-                List<CAMPX__Sponsor__c> addSponsors = new List<CAMPX__Sponsor__c>{s};
-                eventMap.put(s.CAMPX__Event__c, addSponsors);
-            }
-        }
-        eventsToUpdate = [SELECT Id, CAMPX__GrossRevenue__c FROM CAMPX__Event__c WHERE Id IN: eventMap.keySet()];
-
-        for(CAMPX__Event__c e : eventsToUpdate){
-            Decimal totalContribution = 0.0;
-            for(CAMPX__Sponsor__c s : eventMap.get(e.Id)){
-                totalContribution += s.CAMPX__ContributionAmount__c;
-            }
-            e.CAMPX__GrossRevenue__c = totalContribution;
-        }
-        try {
-            update eventsToUpdate;
-        }
-        catch(DmlException e){
-            System.debug('DML Error Message: ' + e.getMessage());
         }
     }
 
