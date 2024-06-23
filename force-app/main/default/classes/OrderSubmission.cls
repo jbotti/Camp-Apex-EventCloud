@@ -16,17 +16,19 @@ public with sharing class OrderSubmission {
             orderList.add(ord);
         }
 
-        response.orderNumbers = 'mock response';
-        //response.orderNumbers = orderCallout(orderList);
+        //response.orderNumbers = 'mock response';
+        response.orderNumbers = buildRequest(orderList);
         List<Result> resultsWrapper = new List<Result>();
         resultsWrapper.add(response);
         return resultsWrapper;
 
     }
 
-    public static String orderCallout(List<Order> orders){
+    public static String buildRequest(List<Order> orders){
 
-        HttpResponse response = HttpCallout.callout('Post', 'endpoint', 'body');
+        String endpoint = 'callout:BottiDev/services/data/v61.0/composite/tree/Order';
+        String requestBody = JSON.serialize(orders);
+        HttpResponse response = HttpCallout.callout('POST', endpoint, requestBody);
         return response.getBody();
 
     }
