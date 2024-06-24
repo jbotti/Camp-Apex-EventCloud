@@ -11,6 +11,7 @@ public with sharing class OrderSubmission {
             ord.AccountId = opp.AccountId;
             ord.OpportunityId = opp.Id;
             ord.Description = opp.Description;
+            ord.EffectiveDate = System.today();
             ord.Type = opp.Type;
             ord.Status = 'Draft';
             orderList.add(ord);
@@ -24,12 +25,42 @@ public with sharing class OrderSubmission {
 
     }
 
-    public static String buildRequest(List<Order> orders){
+    public static String buildRequest(List<Order> orderList){
 
         String endpoint = 'callout:BottiDev/services/data/v61.0/composite/tree/Order';
-        String requestBody = JSON.serialize(orders);
+        String requestBody = buildJSON(orderList);
         HttpResponse response = HttpCallout.callout('POST', endpoint, requestBody);
         return response.getBody();
+
+    }
+
+    public static String buildJSON(List<Order> orderList){
+        String jsonData = '';
+        if(!orderList.isEmpty()){
+            Integer i = 0;
+            JSONGenerator jsonGen = JSON.createGenerator(true);
+            jsonGen.writeStartObject();
+            //jsonGen.writeBooleanField('allOrNone',false);
+            jsonGen.writeFieldName('records');
+            jsonGen.writeStartArray();
+            for(Order o : orderList){
+                jsonGen.writeStartObject();
+                jsonGen.writeFieldName('attributes');
+                jsonGen.writeStartObject();
+                jsonGen.writeStringField('type','Order');
+                jsonGen.writeStringField('referenceId','ref'+(i++));
+                jsonGen.writeEndObject();
+                jsonGen.writeStringField('Description',o.Description);
+                jsonGen.writeStringField('Status', o.Status);
+                jsonGen.writeDateField('EffectiveDate', o.EffectiveDate);
+                jsonGen.writeIdField('AccountId','0015x00002OMXAdAAP');
+                jsonGen.writeEndObject();
+            }
+            jsonGen.writeEndArray();
+            jsonGen.writeEndObject();
+            jsonData = jsonGen.getAsString();
+        }
+        return jsonData;
 
     }
 

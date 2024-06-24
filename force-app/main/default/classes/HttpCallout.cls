@@ -6,7 +6,7 @@ public with sharing class HttpCallout {
         request.setMethod(method);
         request.setEndpoint(endpoint);
         request.setBody(body);
-        if(method == 'GET'){
+        if(method == 'POST'){
             request.setHeader('Content-Type', 'application/json');
         }
 
