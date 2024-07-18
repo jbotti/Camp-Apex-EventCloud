@@ -27,10 +27,20 @@ public with sharing class OrderSubmission {
 
     public static String buildRequest(List<Order> orderList){
 
-        String endpoint = 'callout:BottiDev/services/data/v61.0/composite/tree/Order';
+        String endpoint = 'callout:BottiDev/services/apexrest/OrderService';
         String requestBody = buildJSON(orderList);
         HttpResponse response = HttpCallout.callout('POST', endpoint, requestBody);
-        return response.getBody();
+        String responseBody = '';
+
+        if(response.getStatusCode() == 201){
+            responseBody = response.getBody();
+        }
+        else{
+            responseBody = 'Error: ' + response.getStatusCode() + ' ' + response.getStatus();
+        }
+
+        System.debug(responseBody);
+        return responseBody;
 
     }
 
@@ -45,11 +55,11 @@ public with sharing class OrderSubmission {
             jsonGen.writeStartArray();
             for(Order o : orderList){
                 jsonGen.writeStartObject();
-                jsonGen.writeFieldName('attributes');
+                /*jsonGen.writeFieldName('attributes');
                 jsonGen.writeStartObject();
                 jsonGen.writeStringField('type','Order');
                 jsonGen.writeStringField('referenceId','ref'+(i++));
-                jsonGen.writeEndObject();
+                jsonGen.writeEndObject();*/
                 jsonGen.writeStringField('Description',o.Description);
                 jsonGen.writeStringField('Status', o.Status);
                 jsonGen.writeDateField('EffectiveDate', o.EffectiveDate);

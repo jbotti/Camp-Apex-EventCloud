@@ -21,3 +21,5 @@ Lessons Learned
 - "Generate Authorization Header" must be checked on the Named Credential
 - "Identity URL" within the External Credential should be [myDomain] + "/services/oauth2/token"
 - Must set a run as user on the connected app
+- Calling an apex restresource endpoint....  '/services/apexrest/[restUrl]'
+- Callout example to create cascading records and related records... 'callout:BottiDev/services/data/v61.0/composite/tree/Order';
