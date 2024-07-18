@@ -16,3 +16,17 @@ The `sfdx-project.json` file contains useful configuration information for your 
 - [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
 - [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
 - [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+
+Project Documentation
+
+Opportunity moves to Closed Won
+Callout to create a Case in another Salesforce org
+Use a rest resource in the target org
+Provide that rest resource the information it needs for the new case record
+Rest Resource should process the given info and create the cases it needs to create
+Create a schedulable class that fires each hour to grab the Opps that have closed won
+Schedulable class should fire a separate class that handles the callout
+Do not need to use batch
+
+Learnings
+- If you build a JSON using an apex class structure, you can simply serialize either the instantiated class or the list of instantiated classes
