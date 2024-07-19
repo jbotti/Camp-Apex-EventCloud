@@ -6,6 +6,7 @@ public with sharing class OpportunityTestData {
         o.Name = name;
         o.Amount = amount;
         o.StageName = stage;
+        o.CloseDate = Date.today();
 
         try{
             insert o;

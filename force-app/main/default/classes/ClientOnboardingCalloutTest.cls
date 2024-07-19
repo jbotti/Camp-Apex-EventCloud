@@ -5,6 +5,7 @@ public with sharing class ClientOnboardingCalloutTest {
     static void testCallout() {
 
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
+        
 
         List<Opportunity> opplist = new List<Opportunity>();
         Opportunity o = OpportunityTestData.createOpportunity('Test Name', 10000, 'New');
