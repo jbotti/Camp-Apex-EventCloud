@@ -1,6 +1,6 @@
 public with sharing class ClientOnboardingCallout {
 
-    public static HttpResponse caseCreationCallout(List<Opportunity> oppList) {
+    public static HttpResponse buildRequest(List<Opportunity> oppList) {
 
         String endpoint = 'callout:BottiDev/services/apexrest/CaseService';
         List<OpportunityDetails> oppDetailList = new List<OpportunityDetails>();

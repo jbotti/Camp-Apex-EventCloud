@@ -20,7 +20,7 @@ public with sharing class ClientOnboardingCalloutTest {
         String jsonString = JSON.serialize(oMap);
 		
         Test.startTest();
-            HttpResponse res = ClientOnboardingCallout.caseCreationCallout(opplist);
+            HttpResponse res = ClientOnboardingCallout.buildRequest(opplist);
        	Test.stopTest();
 
         String contentType = res.getHeader('Content-Type');
