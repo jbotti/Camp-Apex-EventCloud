@@ -30,3 +30,7 @@ Do not need to use batch
 
 Learnings
 - If you build a JSON using an apex class structure, you can simply serialize either the instantiated class or the list of instantiated classes
+- CRON Expression:  Sec, Min, Hrs, DayOfMonth, Month, DayOfWk, year (yr is optional, you don't even have to put a character here)
+- CRON Expression special characters:  * means all, ? means no specific value (only use this for DoM and DoW, example would be if you want it to run every day and you don't care what DoM or DoW), - allows you to use ranges, such as MON-FRI
+- CRON Expression Example:  0 30 7 * * ? * would run every day at 7:30 AM
+- CRON Expression:  For "every x" seconds, minutes, or hours, you'd put a zero before the /

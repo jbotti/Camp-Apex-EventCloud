@@ -11,3 +11,9 @@ global with sharing class ClientOnboardingSchedulable implements Schedulable {
         }
     }
 }
+
+/*
+ClientOnboardingSChedulable schClass = new ClientOnboardingSchedulable();
+String sch = '0 0/30 * * * MON-FRI'
+String jobId = System.schedule('Client Onboarding Process', sch, schClass);
+*/
