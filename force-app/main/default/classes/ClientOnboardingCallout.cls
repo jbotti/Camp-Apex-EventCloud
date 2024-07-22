@@ -37,6 +37,7 @@ public with sharing class ClientOnboardingCallout {
 
         for(String k : resmap.keySet()){
             Opportunity opp = new Opportunity();
+            System.debug(k);
             opp.Id = k;
             opp.Onboarding_Case_Number__c = resmap.get(k);
             resUpdates.add(opp);
