@@ -3,7 +3,7 @@ public with sharing class ClientOnboardingCalloutTest {
     
     @testSetup
     static void setup(){
-        Opportunity o = OpportunityTestData.createOpportunity('Test Name', 10000, 'New');
+        Opportunity o = OpportunityTestData.createOpportunity('Test Name', 10000, 'Closed Won', true);
     }
 
     @isTest
@@ -24,8 +24,8 @@ public with sharing class ClientOnboardingCalloutTest {
        	Test.stopTest();
 
         String contentType = res.getHeader('Content-Type');
-        System.assertEquals(contentType, 'application/json');
-        System.assertEquals(res.getBody(), jsonString);
+        Assert.areEqual(contentType, 'application/json', 'Content Types do not match.');
+        Assert.areEqual(res.getBody(), jsonString, 'Body does not match jsonString.');
 
     }
 }

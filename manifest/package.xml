@@ -4,9 +4,11 @@
         <members>CaseService</members>
 		<members>ClientOnboardingCallout</members>
 		<members>ClientOnboardingCalloutTest</members>
+		<members>ClientOnboardingQueueaable</members>
+		<members>ClientOnboardingQueueaableTest</members>
         <members>ClientOnboardingSchedulable</members>
         <members>ClientOnboardingSchedulableTest</members>
-        <members>HttpCallout</members>
+		<members>HttpCallout</members>
 		<members>MockHttpResponseGenerator</members>
 		<members>OpportunityTestData</members>
 		<members>OrderSubmission</members>
